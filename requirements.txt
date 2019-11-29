@@ -1,3 +1,4 @@
+gunicorn
 Django==1.9
 cmake
 djangorestframework==3.6.3
