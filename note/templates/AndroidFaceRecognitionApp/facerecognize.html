@@ -1,0 +1,181 @@
+{% load static %}
+
+<html>
+<head>
+
+<!-- <link rel="stylesheet" type="text/css" href="/Users/yudiz/Downloads/AndroidFaceRecognition/AndroidFaceRecognitionApp/static/css/a.css"> -->
+<script type="text/javascript">
+  
+
+$(document).bind('dragover', function (e) {
+    var dropZone = $('.zone'),
+        timeout = window.dropZoneTimeout;
+    if (!timeout) {
+        dropZone.addClass('in');
+    } else {
+        clearTimeout(timeout);
+    }
+    var found = false,
+        node = e.target;
+    do {
+        if (node === dropZone[0]) {
+            found = true;
+            break;
+        }
+        node = node.parentNode;
+    } while (node != null);
+    if (found) {
+        dropZone.addClass('hover');
+    } else {
+        dropZone.removeClass('hover');
+    }
+    window.dropZoneTimeout = setTimeout(function () {
+        window.dropZoneTimeout = null;
+        dropZone.removeClass('in hover');
+    }, 100);
+});
+
+</script>
+
+
+<style type="text/css">
+
+@import url(https://fonts.googleapis.com/css?family=Exo+2:400,700,500,300);
+
+body {
+  background: white;
+  font-family: "Exo 2";
+}
+
+.zone {      
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: radial-gradient(ellipse at center,white 0,grey 100%);
+  width:80%;
+  height:50%;  
+  border:5px groove white;
+  text-align:center;
+  color: black  ;
+  z-index: 20;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 1 0 1px rgba(255,255,255,.05),inset 0 0 .25em 0 rgba(0,0,0,.25);
+  .btnCompression {
+    .btn {
+
+    } 
+    .active {
+      background: #EB6A5A;
+      color:white;
+    }
+  }
+  i {
+    text-align: center;
+    font-size: 10em;  
+    color:#fff;
+    margin-top: 50px;
+  }
+  .selectFile {
+    height: 50px;
+    margin: 20px auto;
+    position: absolute;
+    width: 200px;          
+  }
+
+  label, input {
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border-radius: 5px;          
+  }
+
+  label {
+    background: #fff;
+    color:#EB6A5A;
+    display: inline-block;
+    font-size: 1.2em;
+    line-height: 50px;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: 400;   
+    box-shadow: 0 1px 1px gray;
+  }
+
+  input[type=file] {
+    opacity: 0;
+  }
+
+}
+.zone.in {
+  color:white;
+  border-color:white;
+  background: radial-gradient(ellipse at center,#EB6A5A 0,#c9402f 100%);
+  i {          
+    color:#fff;
+  }
+  label {
+    background: #fff;
+    color:#EB6A5A;
+  }
+}
+.zone.hover {
+  color:gray;
+  border-color:white;
+  background:#fff;
+  border:5px groove gray;
+  i {          
+    color:#EB6A5A;
+  }
+  label {
+    background: #fff;
+    color:#EB6A5A;
+  }
+}
+.zone.fade {
+  transition: all 0.3s ease-out;
+  opacity: 1;
+}
+
+</style>
+
+</head>
+
+<div class="zone">
+
+  <div id="dropZ">
+    <i class="fa fa-cloud-upload"></i>
+    <br><br><br><br><br><br><br><br>
+    <div>Please upload an image to recognize face</div>     
+    <br><br><br>
+
+
+<form action="RecognizingImage" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="selectFile">    
+    <br><br><br>     
+     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <label for="file"></label>                   
+      <input type="file" name="checkimage">
+    </div>
+<br>
+  
+  </div>
+  <input type="submit" Value="Recognize Person">
+</form>
+</div>
+<br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+    <p>Note - Image must contain frontal face</p>
+  </div>
+
+</body>
+
+</html>
