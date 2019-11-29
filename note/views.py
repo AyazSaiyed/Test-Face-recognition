@@ -16,14 +16,14 @@ from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 import os
 from django.http import HttpRequest
-from models import users
+# from .models import users
 # import urllib.requestsuest
 # import request
 # import requests
 import time
-from models import UserImages
+# from .models import UserImages
 from rest_framework import serializers
-from models import users,UserImages
+# from models import users,UserImages
 from rest_framework import viewsets
 import requests
 from django.views.decorators.csrf import csrf_exempt
@@ -46,8 +46,9 @@ def loginvalidation(request):
 	# cc = requests.get('http://192.168.11.107:8080/api/users/username=?')
 	# print("fc",cc)
 	b = request.GET.get('password')
-	all = users.objects.filter(username=a)
-	for i in all:
+	# all = users.objects.filter(username=a)
+	all = "ayaz"
+	if a == all:
 		ab = str(a)
 		request.session['userid'] = ab
 		print("login successful as ",ab)
@@ -342,44 +343,44 @@ def directrecognize(request):
 	return render(request,'AndroidFaceRecognitionApp/facerecognize.html')
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+# class UserSerializer(serializers.HyperlinkedModelSerializer):
 
-    class Meta:
+#     class Meta:
 
-        model = users
-        fields = '__all__'
+#         model = users
+#         fields = '__all__'
 
 
 
-class UserViewSet(viewsets.ModelViewSet):
+# class UserViewSet(viewsets.ModelViewSet):
 	
 	
-	queryset = users.objects.all()
-	serializer_class = UserSerializer
+# 	queryset = users.objects.all()
+# 	serializer_class = UserSerializer
 
-# def get_queryset(self):
-#     longitude = self.request.query_params.get('username')
-#     # latitude= self.request.query_params.get('latitude')
-#     # radius = self.request.query_params.get('radius')
+# # def get_queryset(self):
+# #     longitude = self.request.query_params.get('username')
+# #     # latitude= self.request.query_params.get('latitude')
+# #     # radius = self.request.query_params.get('radius')
 
-#     # location = Point(longitude, latitude)
+# #     # location = Point(longitude, latitude)
 
-#     queryset = users.objects.filter(username=longitude)
+# #     queryset = users.objects.filter(username=longitude)
 
-#     return queryset
-
-
-class UserImageSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = UserImages
-		fields = '__all__'
+# #     return queryset
 
 
-class UserImageViewSet(viewsets.ModelViewSet):
+# class UserImageSerializer(serializers.HyperlinkedModelSerializer):
+# 	class Meta:
+# 		model = UserImages
+# 		fields = '__all__'
 
-    queryset = UserImages.objects.all()
-    # print("query set is ",qu)
-    serializer_class = UserImageSerializer
+
+# class UserImageViewSet(viewsets.ModelViewSet):
+
+#     queryset = UserImages.objects.all()
+#     # print("query set is ",qu)
+#     serializer_class = UserImageSerializer
 
 
 def temp(request):
