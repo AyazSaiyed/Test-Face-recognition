@@ -1,0 +1,27 @@
+For Training - 
+
+
+http://192.168.11.107:8080/api/training?csrftoken=DzxhIQpPyeizUg0gVQqTApgBY4zMhTKy
+(POST)
+
+
+http://192.168.11.107:8080/api/training?
+
+
+--------------------
+
+For Uploading Image - 
+
+
+For Login Validation and redirecting to uploading page - http://192.168.11.107:8080/loginvalidation?username=Ayaz&&password=abc
+
+
+For Uploading Image - 
+http://192.168.11.107:8080/uploadimg
+( userimg = 'a.jpg')
+---------------------
+
+For Recognizing Image - 
+
+http://192.168.11.107:8080/RecognizingImage?
+
